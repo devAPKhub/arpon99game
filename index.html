@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="description" content="A fun and colorful emoji matching memory game. Play, save your progress, and compete on the leaderboard!">
+  <title>Color Match Game</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233b82f6'/%3E%3Crect x='15' y='15' width='30' height='30' rx='6' fill='%23ff6b6b'/%3E%3Crect x='55' y='15' width='30' height='30' rx='6' fill='%234ecdc4'/%3E%3Crect x='15' y='55' width='30' height='30' rx='6' fill='%2345b7d1'/%3E%3Crect x='55' y='55' width='30' height='30' rx='6' fill='%23f7b731'/%3E%3C/svg%3E">
+  <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233b82f6'/%3E%3Crect x='15' y='15' width='30' height='30' rx='6' fill='%23ff6b6b'/%3E%3Crect x='55' y='15' width='30' height='30' rx='6' fill='%234ecdc4'/%3E%3Crect x='15' y='55' width='30' height='30' rx='6' fill='%2345b7d1'/%3E%3Crect x='55' y='55' width='30' height='30' rx='6' fill='%23f7b731'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233b82f6'/%3E%3Crect x='15' y='15' width='30' height='30' rx='6' fill='%23ff6b6b'/%3E%3Crect x='55' y='15' width='30' height='30' rx='6' fill='%234ecdc4'/%3E%3Crect x='15' y='55' width='30' height='30' rx='6' fill='%2345b7d1'/%3E%3Crect x='55' y='55' width='30' height='30' rx='6' fill='%23f7b731'/%3E%3C/svg%3E">
+  <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Color%20Match%20Game%22%2C%22short_name%22%3A%22Color%20Match%22%2C%22description%22%3A%22A%20fun%20and%20colorful%20emoji%20matching%20memory%20game%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%231e293b%22%2C%22theme_color%22%3A%22%233b82f6%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%253E%253Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27%20fill%3D%27%25233b82f6%27%2F%253E%253Crect%20x%3D%2715%27%20y%3D%2715%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%2523ff6b6b%27%2F%253E%253Crect%20x%3D%2755%27%20y%3D%2715%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%25234ecdc4%27%2F%253E%253Crect%20x%3D%2715%27%20y%3D%2755%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%252345b7d1%27%2F%253E%253Crect%20x%3D%2755%27%20y%3D%2755%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%2523f7b731%27%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%253E%253Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2720%27%20fill%3D%27%25233b82f6%27%2F%253E%253Crect%20x%3D%2715%27%20y%3D%2715%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%2523ff6b6b%27%2F%253E%253Crect%20x%3D%2755%27%20y%3D%2715%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%25234ecdc4%27%2F%253E%253Crect%20x%3D%2715%27%20y%3D%2755%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%252345b7d1%27%2F%253E%253Crect%20x%3D%2755%27%20y%3D%2755%27%20width%3D%2730%27%20height%3D%2730%27%20rx%3D%276%27%20fill%3D%27%2523f7b731%27%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .animated-bg {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731, #5f27cd, #00d2d3);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .color-tile {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+    
+    .color-tile:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .color-tile.matched {
+      opacity: 0.4;
+      pointer-events: none;
+      filter: blur(2px);
+    }
+    
+    .pulse {
+      animation: pulse 0.5s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15) rotate(5deg); }
+    }
+    
+    .flip {
+      animation: flip 0.6s;
+    }
+    
+    @keyframes flip {
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(90deg); }
+      100% { transform: rotateY(0deg); }
+    }
+    
+    .bounce {
+      animation: bounce 0.6s;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(-20px); }
+      75% { transform: translateY(-10px); }
+    }
+    
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .settings-panel {
+      transition: all 0.3s ease;
+    }
+    
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      animation: confettiFall 3s ease-out forwards;
+    }
+    
+    @keyframes confettiFall {
+      to {
+        transform: translateY(100%) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: slideIn 0.3s ease-out;
+      z-index: 1000;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#1e293b",
+      surface_color: "#334155",
+      text_color: "#f1f5f9",
+      primary_action_color: "#3b82f6",
+      secondary_action_color: "#8b5cf6",
+      font_family: "system-ui",
+      font_size: 16,
+      game_title: "Color Match",
+      instructions_text: "Match all the color pairs to win!",
+      play_button_text: "Play Again"
+    };
+
+    let config = { ...defaultConfig };
+    let gameState = {
+      emojis: [],
+      selectedTiles: [],
+      matchedPairs: 0,
+      moves: 0,
+      gameStarted: false,
+      showSettings: false,
+      showLeaderboard: false,
+      showProfile: false,
+      gridSize: 4,
+      theme: 'animals',
+      timer: 0,
+      timerInterval: null,
+      currentPlayer: null,
+      view: 'welcome' // welcome, game, leaderboard, profile
+    };
+    
+    let allGameRecords = [];
+    let isDataLoading = true;
+
+    const emojiSets = {
+      animals: ['🐶', '��', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔'],
+      food: ['🍕', '🍔', '🍟', '🌭', '🍿', '🧁', '🍩', '🍪', '🎂', '🍰', '🧇', '🥞', '🍦', '🍨', '🍧', '��'],
+      fruits: ['🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒', '🍑', '🥭', '🍍', '🥥', '🥝', '🍏'],
+      nature: ['🌸', '🌺', '🌻', '🌷', '🌹', '🥀', '🌼', '🌵', '🌲', '🌳', '🌴', '🍀', '🌿', '☘️', '🌾', '🪴'],
+      space: ['🌟', '⭐', '✨', '💫', '🌙', '☀️', '🪐', '🌍', '🌎', '🌏', '🚀', '🛸', '🌠', '☄️', '🌌', '🔭']
+    };
+    
+    const avatarEmojis = ['😀', '😎', '🤩', '🥳', '🤓', '🧐', '😇', '🥰', '😺', '🐶', '🦊', '🐼', '🦁', '🐯', '🦄', '🐲'];
+    
+    let currentTheme = 'animals';
+
+    // Data SDK Handler
+    const dataHandler = {
+      onDataChanged(data) {
+        allGameRecords = data || [];
+        isDataLoading = false;
+        updateLeaderboardUI();
+        updateProfileStats();
+      }
+    };
+
+    async function initDataSDK() {
+      if (window.dataSdk) {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) {
+          console.error("Failed to initialize Data SDK");
+          showToast("⚠️ Unable to load saved data");
+        }
+      }
+    }
+
+    function showToast(message) {
+      const existing = document.querySelector('.toast');
+      if (existing) existing.remove();
+      
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    function calculateScore(moves, timeSeconds, gridSize) {
+      const baseScore = gridSize === 6 ? 1000 : 500;
+      const timePenalty = Math.floor(timeSeconds / 2);
+      const movePenalty = moves * 5;
+      return Math.max(baseScore - timePenalty - movePenalty, 0);
+    }
+
+    async function saveGameResult() {
+      if (!window.dataSdk || !gameState.currentPlayer) return;
+      
+      if (allGameRecords.length >= 999) {
+        showToast("⚠️ Maximum limit of 999 games reached");
+        return;
+      }
+
+      const score = calculateScore(gameState.moves, gameState.timer, gameState.gridSize);
+      
+      const gameRecord = {
+        player_name: gameState.currentPlayer.name,
+        avatar: gameState.currentPlayer.avatar,
+        game_date: new Date().toISOString(),
+        time_seconds: gameState.timer,
+        moves: gameState.moves,
+        grid_size: gameState.gridSize,
+        theme: gameState.theme,
+        score: score
+      };
+
+      const result = await window.dataSdk.create(gameRecord);
+      if (result.isOk) {
+        showToast("✅ Game saved successfully!");
+      } else {
+        showToast("❌ Failed to save game");
+      }
+    }
+
+    function setupPlayer(name, avatar) {
+      gameState.currentPlayer = { name, avatar };
+      localStorage.setItem('currentPlayer', JSON.stringify(gameState.currentPlayer));
+    }
+
+    function loadPlayer() {
+      const saved = localStorage.getItem('currentPlayer');
+      if (saved) {
+        gameState.currentPlayer = JSON.parse(saved);
+      }
+    }
+
+    function initGame() {
+      if (!gameState.currentPlayer) {
+        gameState.view = 'welcome';
+        render();
+        return;
+      }
+
+      const pairCount = (gameState.gridSize * gameState.gridSize) / 2;
+      const emojiPool = emojiSets[gameState.theme];
+      const selectedEmojis = emojiPool.slice(0, pairCount);
+      const emojiPairs = [...selectedEmojis, ...selectedEmojis];
+      gameState.emojis = emojiPairs.sort(() => Math.random() - 0.5);
+      gameState.selectedTiles = [];
+      gameState.matchedPairs = 0;
+      gameState.moves = 0;
+      gameState.gameStarted = true;
+      gameState.view = 'game';
+      gameState.timer = 0;
+      
+      if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+      gameState.timerInterval = setInterval(() => {
+        gameState.timer++;
+        updateStats();
+      }, 1000);
+      
+      render();
+    }
+    
+    function toggleSettings() {
+      gameState.showSettings = !gameState.showSettings;
+      render();
+    }
+    
+    function changeTheme(theme) {
+      gameState.theme = theme;
+      currentTheme = theme;
+    }
+    
+    function changeGridSize(size) {
+      gameState.gridSize = size;
+    }
+    
+    function createConfetti() {
+      const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f7b731', '#5f27cd', '#00d2d3', '#ff6348', '#ffa502'];
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 0.5 + 's';
+          document.body.appendChild(confetti);
+          
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+    }
+
+    function handleTileClick(index) {
+      if (!gameState.gameStarted) return;
+      if (gameState.selectedTiles.length === 2) return;
+      if (gameState.selectedTiles.includes(index)) return;
+      if (document.querySelector(`[data-index="${index}"]`).classList.contains('matched')) return;
+
+      gameState.selectedTiles.push(index);
+      
+      const tile = document.querySelector(`[data-index="${index}"]`);
+      tile.textContent = gameState.emojis[index];
+      tile.style.fontSize = gameState.gridSize === 6 ? '32px' : '48px';
+      tile.classList.add('flip');
+
+      if (gameState.selectedTiles.length === 2) {
+        gameState.moves++;
+        updateStats();
+        
+        setTimeout(() => {
+          checkMatch();
+        }, 800);
+      }
+    }
+
+    function checkMatch() {
+      const [first, second] = gameState.selectedTiles;
+      const tile1 = document.querySelector(`[data-index="${first}"]`);
+      const tile2 = document.querySelector(`[data-index="${second}"]`);
+      const totalPairs = (gameState.gridSize * gameState.gridSize) / 2;
+
+      if (gameState.emojis[first] === gameState.emojis[second]) {
+        tile1.classList.add('matched', 'bounce');
+        tile2.classList.add('matched', 'bounce');
+        gameState.matchedPairs++;
+
+        if (gameState.matchedPairs === totalPairs) {
+          if (gameState.timerInterval) {
+            clearInterval(gameState.timerInterval);
+          }
+          setTimeout(() => {
+            createConfetti();
+            saveGameResult();
+            showWinMessage();
+          }, 500);
+        }
+      } else {
+        tile1.textContent = '❓';
+        tile2.textContent = '❓';
+      }
+
+      tile1.classList.remove('flip');
+      tile2.classList.remove('flip');
+      gameState.selectedTiles = [];
+      updateStats();
+    }
+
+    function showWinMessage() {
+      const winDiv = document.getElementById('win-message');
+      if (winDiv) {
+        winDiv.classList.remove('hidden');
+      }
+    }
+
+    function updateStats() {
+      const movesEl = document.getElementById('moves');
+      const pairsEl = document.getElementById('pairs');
+      const timerEl = document.getElementById('timer');
+      
+      if (movesEl) movesEl.textContent = gameState.moves;
+      if (pairsEl) {
+        const totalPairs = (gameState.gridSize * gameState.gridSize) / 2;
+        pairsEl.textContent = `${gameState.matchedPairs}/${totalPairs}`;
+      }
+      if (timerEl) {
+        const mins = Math.floor(gameState.timer / 60);
+        const secs = gameState.timer % 60;
+        timerEl.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+    }
+    
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateLeaderboardUI(searchQuery = '') {
+      const leaderboardContainer = document.getElementById('leaderboard-list');
+      if (!leaderboardContainer) return;
+
+      let filteredRecords = [...allGameRecords];
+      
+      if (searchQuery) {
+        filteredRecords = filteredRecords.filter(record => 
+          record.player_name.toLowerCase().includes(searchQuery)
+        );
+      }
+
+      const sortedRecords = filteredRecords.sort((a, b) => b.score - a.score).slice(0, 10);
+      
+      if (sortedRecords.length === 0) {
+        leaderboardContainer.innerHTML = searchQuery 
+          ? '<p class="text-center opacity-75">No players found matching your search.</p>'
+          : '<p class="text-center opacity-75">No games played yet. Start playing to appear on the leaderboard!</p>';
+        return;
+      }
+
+      leaderboardContainer.innerHTML = sortedRecords.map((record, index) => `
+        <div class="flex items-center gap-4 p-4 rounded-lg" style="background-color: rgba(255,255,255,0.1);">
+          <div class="text-3xl font-bold" style="color: ${index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : index === 2 ? '#CD7F32' : 'inherit'}">
+            ${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`}
+          </div>
+          <div class="text-2xl">${record.avatar}</div>
+          <div class="flex-1">
+            <div class="font-semibold">${record.player_name}</div>
+            <div class="text-sm opacity-75">${formatTime(record.time_seconds)} • ${record.moves} moves • ${record.grid_size}×${record.grid_size}</div>
+          </div>
+          <div class="text-xl font-bold">${record.score}</div>
+        </div>
+      `).join('');
+    }
+
+    function filterLeaderboard(query) {
+      updateLeaderboardUI(query);
+    }
+
+    function updateProfileStats() {
+      if (!gameState.currentPlayer) return;
+      
+      const playerGames = allGameRecords.filter(r => r.player_name === gameState.currentPlayer.name);
+      
+      const statsContainer = document.getElementById('profile-stats');
+      if (!statsContainer) return;
+
+      if (playerGames.length === 0) {
+        statsContainer.innerHTML = '<p class="text-center opacity-75">No games played yet. Start playing to see your stats!</p>';
+        return;
+      }
+
+      const totalGames = playerGames.length;
+      const bestScore = Math.max(...playerGames.map(g => g.score));
+      const avgTime = Math.floor(playerGames.reduce((sum, g) => sum + g.time_seconds, 0) / totalGames);
+      const bestTime = Math.min(...playerGames.map(g => g.time_seconds));
+
+      statsContainer.innerHTML = `
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 rounded-lg text-center" style="background-color: rgba(255,255,255,0.1);">
+            <div class="text-3xl font-bold">${totalGames}</div>
+            <div class="text-sm opacity-75">Games Played</div>
+          </div>
+          <div class="p-4 rounded-lg text-center" style="background-color: rgba(255,255,255,0.1);">
+            <div class="text-3xl font-bold">${bestScore}</div>
+            <div class="text-sm opacity-75">Best Score</div>
+          </div>
+          <div class="p-4 rounded-lg text-center" style="background-color: rgba(255,255,255,0.1);">
+            <div class="text-3xl font-bold">${formatTime(bestTime)}</div>
+            <div class="text-sm opacity-75">Best Time</div>
+          </div>
+          <div class="p-4 rounded-lg text-center" style="background-color: rgba(255,255,255,0.1);">
+            <div class="text-3xl font-bold">${formatTime(avgTime)}</div>
+            <div class="text-sm opacity-75">Avg Time</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      const fontFamily = `${customFont}, ${baseFontStack}`;
+
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      const app = document.getElementById('app');
+      app.className = 'h-full w-full animated-bg';
+      app.style.fontFamily = fontFamily;
+      app.style.color = textColor;
+
+      // Welcome Screen
+      if (gameState.view === 'welcome' || !gameState.currentPlayer) {
+        app.innerHTML = `
+          <div class="flex items-center justify-center min-h-full p-8">
+            <div class="text-center float max-w-md w-full">
+              <svg width="120" height="120" viewBox="0 0 120 120" class="mx-auto mb-4">
+                <defs>
+                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#4ecdc4;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#45b7d1;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="55" fill="url(#logoGradient)" opacity="0.2"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="url(#logoGradient)" stroke-width="4"/>
+                <g transform="translate(60, 60)">
+                  <rect x="-15" y="-15" width="12" height="12" rx="3" fill="#ff6b6b"/>
+                  <rect x="3" y="-15" width="12" height="12" rx="3" fill="#4ecdc4"/>
+                  <rect x="-15" y="3" width="12" height="12" rx="3" fill="#45b7d1"/>
+                  <rect x="3" y="3" width="12" height="12" rx="3" fill="#f7b731"/>
+                  <circle cx="0" cy="0" r="6" fill="white"/>
+                  <path d="M -3 0 L 0 -3 L 3 0 L 0 3 Z" fill="${primaryColor}"/>
+                </g>
+              </svg>
+              <h1 id="title" style="font-size: ${baseSize * 2.5}px; font-family: ${fontFamily}; color: ${textColor}; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" class="font-bold mb-4">${config.game_title || defaultConfig.game_title}</h1>
+              <p id="instructions" style="font-size: ${baseSize * 1.125}px; font-family: ${fontFamily}; color: ${textColor};" class="mb-8 opacity-90">${config.instructions_text || defaultConfig.instructions_text}</p>
+              
+              <div class="p-6 rounded-xl mb-6" style="background-color: rgba(255,255,255,0.95); color: #1e293b;">
+                <h3 style="font-size: ${baseSize * 1.25}px; font-family: ${fontFamily};" class="font-bold mb-4">👤 Create Your Profile</h3>
+                <form id="profile-form">
+                  <div class="mb-4">
+                    <label style="font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="block mb-2 text-left font-semibold">Player Name:</label>
+                    <input type="text" id="player-name" placeholder="Enter your name" required maxlength="20" style="font-size: ${baseSize}px; font-family: ${fontFamily}; width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px;" />
+                  </div>
+                  <div class="mb-4">
+                    <label style="font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="block mb-2 text-left font-semibold">Choose Avatar:</label>
+                    <div class="grid grid-cols-8 gap-2">
+                      ${avatarEmojis.map(emoji => `
+                        <button type="button" class="avatar-btn p-2 rounded-lg hover:scale-110 transition-transform" data-avatar="${emoji}" style="font-size: 24px; background-color: #f0f0f0;">${emoji}</button>
+                      `).join('')}
+                    </div>
+                    <input type="hidden" id="selected-avatar" value="😀" />
+                  </div>
+                  <button type="submit" style="background-color: ${primaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.2); color: white;" class="w-full px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">🚀 Start Playing</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        // Avatar selection
+        document.querySelectorAll('.avatar-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.avatar-btn').forEach(b => b.style.backgroundColor = '#f0f0f0');
+            btn.style.backgroundColor = primaryColor;
+            document.getElementById('selected-avatar').value = btn.dataset.avatar;
+          });
+        });
+        
+        // Form submission
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('player-name').value.trim();
+          const avatar = document.getElementById('selected-avatar').value;
+          if (name) {
+            setupPlayer(name, avatar);
+            gameState.view = 'menu';
+            render();
+          }
+        });
+        
+        return;
+      }
+
+      // Main Menu
+      if (gameState.view === 'menu') {
+        app.innerHTML = `
+          <div class="flex items-center justify-center min-h-full p-8">
+            <div class="text-center max-w-md w-full">
+              <svg width="80" height="80" viewBox="0 0 120 120" class="mx-auto mb-3">
+                <defs>
+                  <linearGradient id="logoGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#4ecdc4;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#45b7d1;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <circle cx="60" cy="60" r="55" fill="url(#logoGradient2)" opacity="0.2"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="url(#logoGradient2)" stroke-width="4"/>
+                <g transform="translate(60, 60)">
+                  <rect x="-15" y="-15" width="12" height="12" rx="3" fill="#ff6b6b"/>
+                  <rect x="3" y="-15" width="12" height="12" rx="3" fill="#4ecdc4"/>
+                  <rect x="-15" y="3" width="12" height="12" rx="3" fill="#45b7d1"/>
+                  <rect x="3" y="3" width="12" height="12" rx="3" fill="#f7b731"/>
+                  <circle cx="0" cy="0" r="6" fill="white"/>
+                  <path d="M -3 0 L 0 -3 L 3 0 L 0 3 Z" fill="${primaryColor}"/>
+                </g>
+              </svg>
+              <div class="mb-6">
+                <div style="font-size: ${baseSize * 4}px;" class="mb-2">${gameState.currentPlayer.avatar}</div>
+                <h2 style="font-size: ${baseSize * 1.5}px; font-family: ${fontFamily}; color: ${textColor};" class="font-bold">Welcome, ${gameState.currentPlayer.name}!</h2>
+              </div>
+              
+              <div class="space-y-4">
+                <button id="play-btn" style="background-color: ${primaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.2); color: white;" class="w-full px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">🎯 Play Game</button>
+                <button id="leaderboard-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.2); color: white;" class="w-full px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">🏆 Leaderboard</button>
+                <button id="profile-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.2); color: white;" class="w-full px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">👤 My Profile</button>
+                <button id="settings-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.2); color: white;" class="w-full px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">���️ Settings</button>
+              </div>
+              
+              ${gameState.showSettings ? `
+                <div class="settings-panel p-6 rounded-xl mt-6" style="background-color: rgba(255,255,255,0.95); color: #1e293b; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                  <h3 style="font-size: ${baseSize * 1.5}px; font-family: ${fontFamily};" class="font-bold mb-4">⚙️ Game Settings</h3>
+                  
+                  <div class="mb-6 text-left">
+                    <label style="font-size: ${baseSize}px; font-family: ${fontFamily};" class="font-semibold mb-2 block">🎨 Theme:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                      ${Object.keys(emojiSets).map(theme => `
+                        <button onclick="changeTheme('${theme}')" style="background-color: ${gameState.theme === theme ? primaryColor : surfaceColor}; color: ${gameState.theme === theme ? '#fff' : textColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="px-4 py-2 rounded-lg hover:opacity-90 transition-all capitalize">${theme}</button>
+                      `).join('')}
+                    </div>
+                  </div>
+                  
+                  <div class="text-left">
+                    <label style="font-size: ${baseSize}px; font-family: ${fontFamily};" class="font-semibold mb-2 block">📏 Difficulty:</label>
+                    <div class="flex gap-2">
+                      <button onclick="changeGridSize(4)" style="background-color: ${gameState.gridSize === 4 ? primaryColor : surfaceColor}; color: ${gameState.gridSize === 4 ? '#fff' : textColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="flex-1 px-4 py-2 rounded-lg hover:opacity-90 transition-all">Easy (4×4)</button>
+                      <button onclick="changeGridSize(6)" style="background-color: ${gameState.gridSize === 6 ? primaryColor : surfaceColor}; color: ${gameState.gridSize === 6 ? '#fff' : textColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="flex-1 px-4 py-2 rounded-lg hover:opacity-90 transition-all">Hard (6×6)</button>
+                    </div>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('play-btn').addEventListener('click', initGame);
+        document.getElementById('leaderboard-btn').addEventListener('click', () => {
+          gameState.view = 'leaderboard';
+          render();
+        });
+        document.getElementById('profile-btn').addEventListener('click', () => {
+          gameState.view = 'profile';
+          render();
+        });
+        document.getElementById('settings-btn').addEventListener('click', toggleSettings);
+        
+        return;
+      }
+
+      // Leaderboard View
+      if (gameState.view === 'leaderboard') {
+        app.innerHTML = `
+          <div class="flex flex-col min-h-full p-6">
+            <header class="mb-6">
+              <div class="flex justify-between items-center mb-4">
+                <h1 style="font-size: ${baseSize * 1.75}px; font-family: ${fontFamily}; color: ${textColor}; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" class="font-bold">🏆 Leaderboard</h1>
+                <button id="back-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily}; box-shadow: 0 2px 8px rgba(0,0,0,0.2); color: white;" class="px-4 py-2 rounded-lg hover:opacity-90 transition-all hover:scale-105">⬅️ Back</button>
+              </div>
+              <div class="relative max-w-md mx-auto">
+                <input 
+                  type="text" 
+                  id="search-input" 
+                  placeholder="🔍 Search player name..." 
+                  style="font-size: ${baseSize}px; font-family: ${fontFamily}; width: 100%; padding: 12px 40px 12px 12px; border: 2px solid rgba(255,255,255,0.3); border-radius: 12px; background-color: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: ${textColor};"
+                  class="focus:outline-none focus:border-opacity-50"
+                />
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="absolute right-3 top-1/2 -translate-y-1/2" style="pointer-events: none;">
+                  <circle cx="8" cy="8" r="6" stroke="${textColor}" stroke-width="2" opacity="0.5"/>
+                  <line x1="12.5" y1="12.5" x2="17" y2="17" stroke="${textColor}" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+              </div>
+            </header>
+            
+            <div class="flex-1 overflow-auto">
+              <div id="leaderboard-list" class="space-y-3 max-w-3xl mx-auto">
+                ${isDataLoading ? '<p class="text-center">Loading...</p>' : ''}
+              </div>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('back-btn').addEventListener('click', () => {
+          gameState.view = 'menu';
+          render();
+        });
+        
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase();
+          filterLeaderboard(query);
+        });
+        
+        updateLeaderboardUI();
+        return;
+      }
+
+      // Profile View
+      if (gameState.view === 'profile') {
+        app.innerHTML = `
+          <div class="flex flex-col min-h-full p-6">
+            <header class="mb-6">
+              <div class="flex justify-between items-center mb-4">
+                <h1 style="font-size: ${baseSize * 1.75}px; font-family: ${fontFamily}; color: ${textColor}; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" class="font-bold">👤 My Profile</h1>
+                <button id="back-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily}; box-shadow: 0 2px 8px rgba(0,0,0,0.2); color: white;" class="px-4 py-2 rounded-lg hover:opacity-90 transition-all hover:scale-105">⬅️ Back</button>
+              </div>
+            </header>
+            
+            <div class="flex-1 overflow-auto">
+              <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-8 p-6 rounded-xl" style="background-color: rgba(255,255,255,0.1);">
+                  <div style="font-size: ${baseSize * 4}px;" class="mb-2">${gameState.currentPlayer.avatar}</div>
+                  <h2 style="font-size: ${baseSize * 1.5}px; font-family: ${fontFamily}; color: ${textColor};" class="font-bold">${gameState.currentPlayer.name}</h2>
+                </div>
+                
+                <h3 style="font-size: ${baseSize * 1.25}px; font-family: ${fontFamily}; color: ${textColor};" class="font-bold mb-4">📊 Your Statistics</h3>
+                <div id="profile-stats" class="mb-6">
+                  ${isDataLoading ? '<p class="text-center">Loading...</p>' : ''}
+                </div>
+                
+                <button id="change-profile-btn" style="background-color: ${primaryColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily}; box-shadow: 0 2px 8px rgba(0,0,0,0.2); color: white;" class="w-full px-6 py-3 rounded-lg hover:opacity-90 transition-all">🔄 Change Profile</button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('back-btn').addEventListener('click', () => {
+          gameState.view = 'menu';
+          render();
+        });
+        
+        document.getElementById('change-profile-btn').addEventListener('click', () => {
+          gameState.currentPlayer = null;
+          localStorage.removeItem('currentPlayer');
+          gameState.view = 'welcome';
+          render();
+        });
+        
+        updateProfileStats();
+        return;
+      }
+
+      // Game View
+      if (gameState.view === 'game' && gameState.gameStarted) {
+        app.innerHTML = `
+          <div class="flex flex-col min-h-full p-6">
+            <header class="mb-6">
+              <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-3">
+                  <div style="font-size: ${baseSize * 2}px;">${gameState.currentPlayer.avatar}</div>
+                  <h1 style="font-size: ${baseSize * 1.75}px; font-family: ${fontFamily}; color: ${textColor}; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);" class="font-bold">${gameState.currentPlayer.name}</h1>
+                </div>
+                <button id="quit-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize * 0.875}px; font-family: ${fontFamily}; box-shadow: 0 2px 8px rgba(0,0,0,0.2); color: white;" class="px-4 py-2 rounded-lg hover:opacity-90 transition-all hover:scale-105">⬅️ Quit</button>
+              </div>
+              <div class="flex gap-4 flex-wrap">
+                <div style="font-size: ${baseSize}px; font-family: ${fontFamily}; background-color: rgba(255,255,255,0.2); backdrop-filter: blur(10px);" class="px-4 py-2 rounded-lg">
+                  <span class="opacity-75">⏱️ Time:</span> <span id="timer" class="font-semibold">0:00</span>
+                </div>
+                <div style="font-size: ${baseSize}px; font-family: ${fontFamily}; background-color: rgba(255,255,255,0.2); backdrop-filter: blur(10px);" class="px-4 py-2 rounded-lg">
+                  <span class="opacity-75">👆 Moves:</span> <span id="moves" class="font-semibold">0</span>
+                </div>
+                <div style="font-size: ${baseSize}px; font-family: ${fontFamily}; background-color: rgba(255,255,255,0.2); backdrop-filter: blur(10px);" class="px-4 py-2 rounded-lg">
+                  <span class="opacity-75">✨ Pairs:</span> <span id="pairs" class="font-semibold">0/${(gameState.gridSize * gameState.gridSize) / 2}</span>
+                </div>
+              </div>
+            </header>
+            
+            <div class="flex-1 flex items-center justify-center overflow-auto">
+              <div class="grid gap-4 max-w-3xl w-full" style="grid-template-columns: repeat(${gameState.gridSize}, minmax(0, 1fr));">
+                ${gameState.emojis.map((emoji, index) => `
+                  <div 
+                    class="color-tile aspect-square rounded-xl flex items-center justify-center"
+                    style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: ${gameState.gridSize === 6 ? '32px' : '48px'};"
+                    data-index="${index}"
+                    onclick="handleTileClick(${index})"
+                  >❓</div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div id="win-message" class="hidden fixed inset-0 flex items-center justify-center p-4" style="background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 100;">
+              <div class="text-center p-8 rounded-2xl max-w-md w-full" style="background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); box-shadow: 0 20px 60px rgba(0,0,0,0.4); color: #1e293b;">
+                <div style="font-size: ${baseSize * 4}px;" class="mb-4 bounce">🏆</div>
+                <h2 style="font-size: ${baseSize * 2}px; font-family: ${fontFamily};" class="font-bold mb-2">Amazing! You Won! 🎉</h2>
+                <div style="font-size: ${baseSize * 1.125}px; font-family: ${fontFamily};" class="mb-4 opacity-90">
+                  <p>⏱️ Time: <span class="font-semibold">${formatTime(gameState.timer)}</span></p>
+                  <p>👆 Moves: <span class="font-semibold">${gameState.moves}</span></p>
+                  <p>⭐ Score: <span class="font-semibold">${calculateScore(gameState.moves, gameState.timer, gameState.gridSize)}</span></p>
+                </div>
+                <p style="font-size: ${baseSize * 0.875}px; font-family: ${fontFamily};" class="mb-6 opacity-75">✅ Game saved to your profile!</p>
+                <div class="flex gap-3">
+                  <button id="play-again-btn" style="background-color: ${primaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color: white;" class="flex-1 px-6 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">${config.play_button_text || defaultConfig.play_button_text}</button>
+                  <button id="menu-btn" style="background-color: ${secondaryColor}; font-size: ${baseSize}px; font-family: ${fontFamily}; box-shadow: 0 4px 12px rgba(0,0,0,0.3); color: white;" class="flex-1 px-6 py-4 rounded-lg font-semibold hover:opacity-90 transition-all hover:scale-105">🏠 Menu</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const quitBtn = document.getElementById('quit-btn');
+        if (quitBtn) {
+          quitBtn.addEventListener('click', () => {
+            if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+            gameState.gameStarted = false;
+            gameState.view = 'menu';
+            render();
+          });
+        }
+
+        const playAgainBtn = document.getElementById('play-again-btn');
+        if (playAgainBtn) {
+          playAgainBtn.addEventListener('click', initGame);
+        }
+
+        const menuBtn = document.getElementById('menu-btn');
+        if (menuBtn) {
+          menuBtn.addEventListener('click', () => {
+            gameState.view = 'menu';
+            render();
+          });
+        }
+      }
+    }
+
+    async function onConfigChange(newConfig) {
+      config = { ...newConfig };
+      render();
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["game_title", config.game_title || defaultConfig.game_title],
+          ["instructions_text", config.instructions_text || defaultConfig.instructions_text],
+          ["play_button_text", config.play_button_text || defaultConfig.play_button_text]
+        ])
+      });
+    }
+
+    // Initialize
+    loadPlayer();
+    initDataSDK();
+    render();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9adf588d3526dae6',t:'MTc2NTczMjU1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
